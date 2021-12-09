@@ -9,28 +9,42 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2>Contactez-moi<br>Rhode Dubois</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="form" name="reserve" method="get">
 					<div>
-						<label>Prénom</label>
-						<input />
+						<div class="formData" data-error="Veuillez entrer 2 lettres ou plus pour le champ du prénom" data-error-visible="false">
+              <label for="first">Prénom</label>
+              <input class="text-control" type="text" id="first" name="first" minlength="3"/>
+            </div>
+            <div class="formData" data-error="Veuillez entrer 3 lettres ou plus pour le champ du nom" data-error-visible="false">
+              <label for="last">Nom</label>
+              <input class="text-control" type="text" id="last" name="last" minlength="3"/>
+            </div>
+            <div class="formData" data-error="Veuillez entrer une adresse mail valide" data-error-visible="false">
+              <label for="email">Email</label>
+              <input class="text-control" type="email" id="email" name="email"/>
+            </div>
+            <div class="formData" data-error="Veuillez entrer un message" data-error-visible="false">
+              <label for="message">Message</label>
+              <input class="text-control" type="text" id="message" name="message"/>
+            </div>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>
