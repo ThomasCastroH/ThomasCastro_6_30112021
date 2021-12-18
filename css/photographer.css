@@ -3,10 +3,41 @@
 }
 
 .photograph-header {
+    display: flex;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
 }
+
+.maincontent {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.maincontent h1 {
+    font-size: 2.5rem;
+    color : #D3573C
+}
+
+.textcontent article {
+    margin-top: -20px;
+}
+
+.location {
+    font-weight: bold;
+    color: #8a1717;
+}
+
+#photograph-img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
 
 .contact_button {
     font-size: 20px;
