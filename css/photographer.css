@@ -9,7 +9,7 @@
     margin: 0 100px;
 }
 
-.maincontent {
+.profile-header {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -17,12 +17,12 @@
     justify-content: space-around;
 }
 
-.maincontent h1 {
+.profile-presentation h1 {
     font-size: 2.5rem;
-    color : #D3573C
+    color : #D3573C;
 }
 
-.textcontent article {
+.profile-description {
     margin-top: -20px;
 }
 
@@ -38,6 +38,65 @@
     height: 200px;
 }
 
+.dropdown {
+    margin: 20px 0 20px 7%;
+}
+
+#sort-by{
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.photograph-media {
+    margin: 50px 0 50px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 50px;
+    justify-items: center;
+}
+
+.media {
+    border-radius: 2%;
+    object-fit: cover;
+    height: 350px;
+    width: 350px;
+}
+
+.media-body {
+    margin-top: -15px;
+    display: flex;
+    align-items: center;
+}
+
+.legend {
+    font-size: 1.4rem;
+    color: #8a1717;
+    font-weight: 500;
+}
+
+.likes {
+    font-size: 1.5rem;
+    color: #8a1717;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.heart {
+    font-size: 1.5rem;
+    color: #8a1717;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.fixed-bar {
+    position: fixed;
+    background-color: #ec6b4e;
+    border-radius: 5% 5% 0 0;
+    bottom: 0;
+    right: 5%;
+    font-weight: bold;
+    padding: 0 20px 0 20px;
+}
 
 .contact_button {
     font-size: 20px;
@@ -67,19 +126,22 @@
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    height: 80%;
+    height: 75%;
     width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 35px;
-    margin: auto;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 30px;
 }
 
 .modal header img {

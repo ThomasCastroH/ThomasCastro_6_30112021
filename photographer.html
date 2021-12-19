@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/491808888f.js" crossorigin="anonymous"></script>
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -15,7 +16,20 @@
     <main id="main">
       <div class="photograph-header">
       </div>
-      <article class="fixed-bar"></article>
+      <aside></aside>
+      <aside class="fixed-bar"></aside>
+
+      <aside class="dropdown">
+        <label id="sort-by" tabindex="0" class="selection">Trier par</label>
+        <button class="dropdown-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-chevron-down"></i></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">Popularité</a>
+          <a class="dropdown-item">Date</a>
+          <a class="dropdown-item">Titre</a>
+        </div>
+      </aside>
+
+      <article class="photograph-media"></article>
     </main>
 
     <div id="contact_modal">
@@ -48,6 +62,7 @@
 			</div>
 		</div>
     <script src="scripts/pages/photographer.js"></script>
+    <script src="scripts/factories/media.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/factories/profile.js"></script>
   </body>
