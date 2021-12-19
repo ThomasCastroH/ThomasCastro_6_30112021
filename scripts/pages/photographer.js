@@ -6,7 +6,7 @@ async function getPhotographers() {
     .then((data) => {
       photographers = data.photographers;
     });
-    
+
   return {photographers};
 }
 
@@ -69,6 +69,8 @@ async function displayMedia(media) {
     const mediaCardDOM = mediaBox.getMediaCardDOM();
     mediaSection.appendChild(mediaCardDOM);
   });
+
+  displayLightbox();
 }
 
 async function init() {

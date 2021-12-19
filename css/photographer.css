@@ -40,11 +40,18 @@
 
 .dropdown {
     margin: 20px 0 20px 7%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 #sort-by{
     font-size: 1.2rem;
     font-weight: bolder;
+}
+
+.custom-select {
+    position: relative;
 }
 
 .photograph-media {
@@ -60,6 +67,7 @@
     object-fit: cover;
     height: 350px;
     width: 350px;
+    cursor: pointer;
 }
 
 .media-body {
