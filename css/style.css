@@ -10,7 +10,6 @@ body {
     margin: 0;
 }
 
-
 header {
     display: flex;
     flex-direction: row;
@@ -24,9 +23,14 @@ h1 {
     margin-right: 100px;
 }
 
-a {
+.card {
+    cursor: pointer;
     text-decoration: none;
-    width: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo {
@@ -44,11 +48,9 @@ a {
 }
 
 .photographer_section article {
-    justify-self: center;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+
 }
 
 .photographer_section article h2 {
@@ -62,18 +64,11 @@ a {
     font-size: 13px;
 }
 
-.photographer_section article img {
-    border-radius: 50%;
-    object-fit: cover;
-    height: 200px;
-    width: 200px;
-}
-
 .photographer_section article span {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-items: center;
     margin-top: -2.5rem; 
 }
 

@@ -2,72 +2,202 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/491808888f.js" crossorigin="anonymous"></script>
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/491808888f.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header tabindex="0" id="header">
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"/></a>
+      <a href="index.html"
+        ><img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page"
+      /></a>
     </header>
 
     <main id="main">
-      <div class="photograph-header">
-      </div>
+      <div class="photograph-header"></div>
       <aside></aside>
       <aside class="fixed-bar"></aside>
 
       <aside class="dropdown">
-        <label id="sort-by">Trier par</label>
-        <div class="custom-select">
-          <select name="dropdown-menu" id="dropdown-menu">
-            <option value="0">Popularité</option>
-            <option value="1">Date</option>
-            <option value="2">Titre</option>
-          </select>
-        </div>
+        <label class="sort-by" tabindex="0">Trier par:</label>
+        <button
+          id="dropdown-menu"
+          role="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+        >
+          <div class="dropdown-button">
+            <p id="selected-choice"></p>
+            <div id="dropdown-arrow">
+              <div class="fas fa-chevron-down"></div>
+            </div>
+          </div>
+          <ul
+            role="listbox"
+            aria-activedescendant="dropdown-menu"
+            aria-selected="true"
+            aria-labelledby="sort-by"
+            class="dropdown-menu"
+            id="dropdown-ul"
+          >
+            <li
+              tabindex="0"
+              role="option"
+              class="dropdown-menu-li"
+              id="choice-popularity"
+            >
+              Popularité
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              class="dropdown-menu-li"
+              id="choice-date"
+            >
+              Date
+            </li>
+            <li
+              tabindex="0"
+              role="option"
+              class="dropdown-menu-li"
+              id="choice-title"
+            >
+              Titre
+            </li>
+          </ul>
+        </button>
       </aside>
+
       <article class="photograph-media"></article>
     </main>
 
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2 id="contact-me">Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form id="form" name="reserve" method="get">
-					<div>
-						<div class="formData" data-error="Veuillez entrer 2 lettres ou plus pour le champ du prénom" data-error-visible="false">
+        <form id="form" name="reserve" method="get">
+          <div>
+            <div
+              class="formData"
+              data-error="Veuillez entrer 2 lettres ou plus pour le champ du prénom"
+              data-error-visible="false"
+            >
               <label for="first">Prénom</label>
-              <input class="text-control" type="text" id="first" name="first" minlength="3"/>
+              <input
+                class="text-control"
+                type="text"
+                id="first"
+                name="first"
+                minlength="3"
+              />
             </div>
-            <div class="formData" data-error="Veuillez entrer 3 lettres ou plus pour le champ du nom" data-error-visible="false">
+            <div
+              class="formData"
+              data-error="Veuillez entrer 3 lettres ou plus pour le champ du nom"
+              data-error-visible="false"
+            >
               <label for="last">Nom</label>
-              <input class="text-control" type="text" id="last" name="last" minlength="3"/>
+              <input
+                class="text-control"
+                type="text"
+                id="last"
+                name="last"
+                minlength="3"
+              />
             </div>
-            <div class="formData" data-error="Veuillez entrer une adresse mail valide" data-error-visible="false">
+            <div
+              class="formData"
+              data-error="Veuillez entrer une adresse mail valide"
+              data-error-visible="false"
+            >
               <label for="email">Email</label>
-              <input class="text-control" type="email" id="email" name="email"/>
+              <input
+                class="text-control"
+                type="email"
+                id="email"
+                name="email"
+              />
             </div>
-            <div class="formData" data-error="Veuillez entrer un message" data-error-visible="false">
+            <div
+              class="formData"
+              data-error="Veuillez entrer un message"
+              data-error-visible="false"
+            >
               <label for="message">Message</label>
-              <input class="text-control" type="text" id="message" name="message"/>
+              <input
+                class="text-control"
+                type="text"
+                id="message"
+                name="message"
+              />
             </div>
-					</div>
+          </div>
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        </form>
+      </div>
+    </div>
 
+    <div
+      class="lightbox"
+      id="lightbox"
+      role="dialog"
+      aria-label="image closeup view"
+      aria-modal="true"
+      tabindex="0"
+    >
+      <div class="general-container">
+        <div class="lightbox-center">
+          <div
+            tabindex="0"
+            class="lightbox-container"
+            id="lightbox-container"
+          ></div>
+          <p
+            tabindex="0"
+            class="lightbox-container-title"
+            id="lightbox-container-title"
+          ></p>
+        </div>
 
-    <script src="scripts/pages/photographer.js"></script>
-    <script src="scripts/factories/media.js"></script>
+        <button
+          aria-label="Previous image"
+          id="lightbox-prev"
+          class="lightbox-prev"
+        >
+          <div class="fas fa-chevron-left"></div>
+        </button>
+
+        <button
+          aria-label="Next image"
+          id="lightbox-next"
+          class="lightbox-next"
+        >
+          <div class="fas fa-chevron-right"></div>
+        </button>
+
+        <button
+          aria-label="Close dialog"
+          class="lightbox-close"
+          id="lightbox-close"
+        >
+          <div class="fas fa-times"></div>
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
-    <script src="scripts/factories/profile.js"></script>
-    <script src="scripts/factories/lightbox.js"></script>
-    <script src="scripts/utils/lightbox.js"></script>
+    <script src="scripts/factories/lightbox.js" ></script>
+    <script src="scripts/utils/lightbox.js" ></script>
   </body>
 </html>

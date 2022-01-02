@@ -11,11 +11,13 @@ function photographerFactory(data) {
         const link = document.createElement( 'a' );
         link.setAttribute("href", "photographer.html?id="+id);
         link.setAttribute("aria-label", name);
+        link.setAttribute("class", "card");
 
         // Créé l'élément de la photo du photographe
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", "picture of the photographer: " + name);
+        img.setAttribute("id", "photograph-img")
+        img.setAttribute("alt", "picture of the photograph: " + name);
 
         // Créé l'élément nom du photographe
         const h2 = document.createElement( 'h2' );

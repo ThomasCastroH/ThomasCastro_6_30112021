@@ -25,7 +25,6 @@ inputIn[3].addEventListener("change", isMessageValid);
 
 // Functions
 // check if firstname is valid
-
 function isFirstnameValid() {
     if (nameRegex.test(inputIn[0].value)) {
         inputIn[0].parentElement.setAttribute("data-error-visible", "false");
