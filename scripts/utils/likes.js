@@ -10,7 +10,7 @@ export default function addLikes(totalLikes) {
         if (result) {
         let number = parseInt(likeCount.textContent, 10);
         likeCount.textContent = `${(number += 1)}`;
-        totalLike.textContent = `${(totalLikes += 1)}`;
+        totalLike.textContent = (totalLikes += 1);
         const elementLikes = element;
         elementLikes.style.color = "#db8876";
 

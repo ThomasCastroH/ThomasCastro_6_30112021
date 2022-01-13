@@ -21,6 +21,7 @@ export default function mediaFactory(data) {
             img.setAttribute("class", "media")
             img.setAttribute("data-title", title)
             article.appendChild(img);
+            img.dataset.id = id;
         }
 
         // Dans le cas ou le media est une video
@@ -37,6 +38,7 @@ export default function mediaFactory(data) {
             vid.setAttribute("class", "media");
             vid.setAttribute("data-title", title)
             article.appendChild(vid);
+            vid.dataset.id = id;
         }
         
         // Créé l'élément contenant le titre, les likes et le coeur

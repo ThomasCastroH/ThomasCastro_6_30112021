@@ -229,8 +229,121 @@ async function displayMedia(media) {
   heart.innerHTML = '<i class="fas fa-heart"></i>';
   fixedBar.appendChild(heart);
   
-  addLikes(totalLikes);
+  // ouvrir la lightbox et faire apparaitre le media correspondant
+  const lightBox = document.querySelector("#lightbox");
+  const lightBoxMediaContenair = document.querySelector("#lightbox-container");
+  const lightBoxTitle = document.querySelector("#lightbox-container-title");
+  const prevArrow = document.getElementById("lightbox-prev");
+  const nextArrow = document.getElementById("lightbox-next");
 
+  // Création des nouveaux éléments (titres, images, vidéo) à partir du tableau lors de la
+  // navigation fléchée
+
+  // Element précédent
+  const Previous = () => {
+    let mediaLightBox = document.querySelector(".lightbox-container").firstChild;
+    const result = mediaBoxes.find((element) => element.id === parseInt(mediaLightBox.dataset.id, 10));
+    let i = mediaBoxes.indexOf(result);
+
+    if (i === 0) {
+      i = mediaBoxes.length;
+    }
+    const nextMedia = mediaBoxes[i - 1];
+
+    if (nextMedia.image) {
+      const newDisplayImage = nextMedia.image;
+      const picture = `./assets/images/${newDisplayImage}`;
+      const img = document.createElement("img");
+      img.setAttribute("src", picture);
+      img.setAttribute("alt", nextMedia.title);
+      img.dataset.id = mediaBoxes[i - 1].id;
+
+      lightBoxMediaContenair.innerHTML = "";
+      lightBoxMediaContenair.appendChild(img);
+      lightBoxTitle.textContent = nextMedia.title;
+    }
+    if (nextMedia.video) {
+      const newDisplayVideo = nextMedia.video;
+      const movie = `./assets/images/${newDisplayVideo}`;
+      const videoDisplay = document.createElement("video");
+      videoDisplay.setAttribute("src", movie);
+      videoDisplay.setAttribute("controls", "");
+      videoDisplay.setAttribute("aria-label",nextMedia.video.replace(/_/g, " ").replace(".mp4", " ")
+      );
+      videoDisplay.dataset.id = mediaBoxes[i - 1].id;
+
+      lightBoxMediaContenair.innerHTML = "";
+      lightBoxMediaContenair.appendChild(videoDisplay);
+      lightBoxTitle.textContent = nextMedia.video.replace(/_/g, " ").replace(".mp4", " ");
+    }
+
+    mediaLightBox = document.querySelector(".lightbox-container").firstChild;
+  };
+
+  // Element suivant
+  const Next = () => {
+    let mediaLightBox = document.querySelector(
+      ".lightbox-container"
+    ).firstChild;
+
+    const result = mediaBoxes.find((element) => element.id === parseInt(mediaLightBox.dataset.id, 10));
+
+    let i = mediaBoxes.indexOf(result);
+
+    if (i === mediaBoxes.length - 1) {
+      i = -1;
+    }
+    const nextMedia = mediaBoxes[i + 1];
+
+    if (nextMedia.image) {
+      const newDisplayImage = nextMedia.image;
+      const picture = `./assets/images/${newDisplayImage}`;
+      const img = document.createElement("img");
+      img.setAttribute("src", picture);
+      img.setAttribute("alt", nextMedia.title);
+      img.dataset.id = mediaBoxes[i + 1].id;
+
+      lightBoxMediaContenair.innerHTML = "";
+      lightBoxMediaContenair.appendChild(img);
+      lightBoxTitle.textContent = nextMedia.title;
+    }
+    if (nextMedia.video) {
+      const newDisplayVideo = nextMedia.video;
+      const movie = `./assets/images/${newDisplayVideo}`;
+      const videoDisplay = document.createElement("video");
+      videoDisplay.setAttribute("src", movie);
+      videoDisplay.setAttribute("controls", "");
+      videoDisplay.setAttribute("aria-label", nextMedia.video.replace(/_/g, " ").replace(".mp4", " ")
+      );
+      videoDisplay.dataset.id = mediaBoxes[i + 1].id;
+
+      lightBoxMediaContenair.innerHTML = "";
+      lightBoxMediaContenair.appendChild(videoDisplay);
+      lightBoxTitle.textContent = nextMedia.video.replace(/_/g, " ").replace(".mp4", " ");
+    }
+
+    mediaLightBox = document.querySelector(".lightbox-container").firstChild;
+  };
+  // Evenements
+  lightBox.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") {
+      Next();
+    }
+  });
+
+  lightBox.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      Previous();
+    }
+  });
+  nextArrow.addEventListener("click", () => {
+    Next();
+  });
+
+  prevArrow.addEventListener("click", () => {
+    Previous();
+  });
+  addLikes(totalLikes);
   displayLightbox();
 }
 

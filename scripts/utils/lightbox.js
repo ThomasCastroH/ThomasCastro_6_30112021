@@ -1,5 +1,4 @@
 const lightBox = document.getElementById("lightbox");
-const lightBoxOutro = document.getElementById("header");
 const lightBoxClose = document.getElementById("lightbox-close");
 const lightBoxMediaContenair = document.querySelector("#lightbox-container");
 
@@ -7,8 +6,6 @@ function closeLightBox() {
   lightBox.setAttribute("aria-hidden", "true");
   lightBox.style.visibility = "hidden";
   lightBoxMediaContenair.innerHTML = "";
-
-  lightBoxOutro.focus();
 }
 
 lightBoxClose.addEventListener("click", () => {
