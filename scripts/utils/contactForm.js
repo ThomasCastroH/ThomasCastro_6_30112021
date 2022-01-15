@@ -1,21 +1,31 @@
+const form = document.getElementById("form");
+
 // Regex
-const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const nameRegex = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
 // Inputs
 const inputIn = document.querySelectorAll('.text-control');
-
-// open modal
-function displayModal() {
-    const modal = document.getElementById("contact_modal");
-	modal.style.display = "flex";
-}
 
 // close modal
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
+
+// close event
+const modal = document.getElementById("contact_modal");
+const closeCross = document.getElementById("close-button");
+
+closeCross.addEventListener("click", () => {
+    closeModal();
+});
+  
+modal.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        closeModal();
+    }
+});
 
 // Eventslisteners for all inputs
 inputIn[0].addEventListener("change", isFirstnameValid);
@@ -72,7 +82,9 @@ if (inputIn[3].value !== "") {
 function isFormValid(e) {
     e.preventDefault();
     if (isFirstnameValid() && isLastnameValid() && isEmailValid() && isMessageValid()) {
-      form.submit();
+      console.log();
+      console.log();
+      console.log();
     } else {
       isFirstnameValid();
       isLastnameValid();
