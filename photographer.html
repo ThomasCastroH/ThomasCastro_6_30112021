@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -31,6 +31,7 @@
         <button
           id="dropdown-menu"
           role="button"
+          aria-labelledby="8"
           aria-haspopup="listbox"
           aria-expanded="false"
         >
@@ -79,11 +80,11 @@
       <article class="photograph-media"></article>
     </main>
 
-    <div id="contact_modal">
+    <div id="contact_modal" aria-label="Contact me" aria-labelledby="2">
       <div class="modal">
         <header>
-          <h2 id="contact-me">Contactez-moi</h2>
-          <img src="assets/icons/close.svg" id="close-button"/>
+          <h2 tabindex="0" id="contact-me">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" alt="Close Button" id="close-button" aria-label="Close contact form"/>
         </header>
         <form id="form" name="reserve" method="get">
           <div>
@@ -94,6 +95,8 @@
             >
               <label for="first">Prénom</label>
               <input
+                aria-label="First name"
+                aria-labelledby="3"
                 class="text-control"
                 type="text"
                 id="first"
@@ -108,6 +111,8 @@
             >
               <label for="last">Nom</label>
               <input
+                aria-label="Last name"
+                aria-labelledby="5"
                 class="text-control"
                 type="text"
                 id="last"
@@ -122,6 +127,8 @@
             >
               <label for="email">Email</label>
               <input
+                aria-label="Email"
+                aria-labelledby="7"
                 class="text-control"
                 type="email"
                 id="email"
@@ -135,6 +142,8 @@
             >
               <label for="message">Message</label>
               <input
+                aria-label="Your message"
+                aria-labelledby="9" 
                 class="text-control"
                 type="text"
                 id="message"
@@ -142,7 +151,7 @@
               />
             </div>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="Send">Envoyer</button>
         </form>
       </div>
     </div>
