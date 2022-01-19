@@ -47,11 +47,13 @@ async function displayProfile(photographers) {
 
   // Ouverture de la modale
   const modal = document.getElementById("contact_modal");
+  const modalIntro = document.getElementById("contact-me");
   const contactButton = document.getElementById("contact_button");
 
   contactButton.addEventListener("click", () => {
     modal.setAttribute("aria-hidden", "false");
     modal.style.display = "block";
+    modalIntro.focus();
   });
 }
 
@@ -71,7 +73,7 @@ async function displayMedia(media) {
   // Ouverture du dropdown
   const dropdownMenu = document.querySelector("#dropdown-ul");
   const dropdownLink = document.querySelector("#dropdown-menu");
-  const arrow = document.querySelector("#dropdown-arrow");
+  const arrow = document.getElementById("dropdown-arrow");
 
   function toggleDropdown() {
     if (
@@ -100,40 +102,18 @@ async function displayMedia(media) {
   const date = document.getElementById("choice-date");
   const title = document.getElementById("choice-title");
 
-  const selectedChoiceHidden = () => {
-    if (selected.innerHTML === popularity.innerHTML) {
-      popularity.classList.remove("dropdown-menu-li");
-      popularity.innerHTML = "";
-      popularity.removeAttribute("tabindex", "0");
-    } else {
+  const selectedChoice = () => {
+    if (selected.innerHTML != popularity.innerHTML) {
       popularity.innerHTML = "Popularité";
       popularity.classList.add("dropdown-menu-li");
       popularity.setAttribute("tabindex", "0");
-    }
-    if (selected.innerHTML === date.innerHTML) {
-      date.classList.remove("dropdown-menu-li");
-      date.innerHTML = "";
-      date.removeAttribute("tabindex", "0");
-    } else {
-      date.innerHTML = "Date";
-      date.classList.add("dropdown-menu-li");
-      date.setAttribute("tabindex", "0");
-    }
-    if (selected.innerHTML === title.innerHTML) {
-      title.classList.remove("dropdown-menu-li");
-      title.innerHTML = "";
-      title.removeAttribute("tabindex", "0");
-    } else {
-      title.innerHTML = "Titre";
-      title.classList.add("dropdown-menu-li");
-      title.setAttribute("tabindex", "0");
     }
   };
   
   // Tri par nombre de like
   function sortByLike() {
     selected.innerHTML = "Popularité";
-    selectedChoiceHidden();
+    selectedChoice();
     mediaBoxes.sort((a, b) => b.likes - a.likes);
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -153,7 +133,7 @@ async function displayMedia(media) {
   // Tri par date
   function sortByDate() {
     selected.innerHTML = "Date";
-    selectedChoiceHidden();
+    selectedChoice();
     mediaBoxes.sort((a, b) => new Date(b.date) - new Date(a.date));
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -173,7 +153,7 @@ async function displayMedia(media) {
   // Tri par titre
   function sortByTitle() {
     selected.innerHTML = "Titre";
-    selectedChoiceHidden();
+    selectedChoice();
     function compare(a, b) {
       if (a.title < b.title) {
         return -1;
@@ -208,7 +188,7 @@ async function displayMedia(media) {
 
   // Tri par nombre de like par defaut
   sortByLike();
-  selectedChoiceHidden();
+  selectedChoice();
 
   // Compte le nombre de like du photographe
   let totalLikes = 0;
@@ -248,33 +228,32 @@ async function displayMedia(media) {
     if (i === 0) {
       i = mediaBoxes.length;
     }
-    const nextMedia = mediaBoxes[i - 1];
+    const prevMedia = mediaBoxes[i - 1];
 
-    if (nextMedia.image) {
-      const newDisplayImage = nextMedia.image;
+    if (prevMedia.image) {
+      const newDisplayImage = prevMedia.image;
       const picture = `./assets/images/${newDisplayImage}`;
       const img = document.createElement("img");
       img.setAttribute("src", picture);
-      img.setAttribute("alt", nextMedia.title);
+      img.setAttribute("alt", prevMedia.title);
       img.dataset.id = mediaBoxes[i - 1].id;
 
       lightBoxMediaContenair.innerHTML = "";
       lightBoxMediaContenair.appendChild(img);
-      lightBoxTitle.textContent = nextMedia.title;
+      lightBoxTitle.textContent = prevMedia.title;
     }
-    if (nextMedia.video) {
-      const newDisplayVideo = nextMedia.video;
+    if (prevMedia.video) {
+      const newDisplayVideo = prevMedia.video;
       const movie = `./assets/images/${newDisplayVideo}`;
       const videoDisplay = document.createElement("video");
       videoDisplay.setAttribute("src", movie);
       videoDisplay.setAttribute("controls", "");
-      videoDisplay.setAttribute("aria-label",nextMedia.video.replace(/_/g, " ").replace(".mp4", " ")
-      );
+      videoDisplay.setAttribute("aria-label",prevMedia.title);
       videoDisplay.dataset.id = mediaBoxes[i - 1].id;
 
       lightBoxMediaContenair.innerHTML = "";
       lightBoxMediaContenair.appendChild(videoDisplay);
-      lightBoxTitle.textContent = nextMedia.video.replace(/_/g, " ").replace(".mp4", " ");
+      lightBoxTitle.textContent = prevMedia.title;
     }
 
     mediaLightBox = document.querySelector(".lightbox-container").firstChild;
@@ -313,18 +292,17 @@ async function displayMedia(media) {
       const videoDisplay = document.createElement("video");
       videoDisplay.setAttribute("src", movie);
       videoDisplay.setAttribute("controls", "");
-      videoDisplay.setAttribute("aria-label", nextMedia.video.replace(/_/g, " ").replace(".mp4", " ")
-      );
+      videoDisplay.setAttribute("aria-label", nextMedia.title);
       videoDisplay.dataset.id = mediaBoxes[i + 1].id;
 
       lightBoxMediaContenair.innerHTML = "";
       lightBoxMediaContenair.appendChild(videoDisplay);
-      lightBoxTitle.textContent = nextMedia.video.replace(/_/g, " ").replace(".mp4", " ");
+      lightBoxTitle.textContent = nextMedia.title;
     }
 
     mediaLightBox = document.querySelector(".lightbox-container").firstChild;
   };
-  // Evenements
+  // Evenements de la lightbox
   lightBox.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
       Next();
@@ -343,6 +321,7 @@ async function displayMedia(media) {
   prevArrow.addEventListener("click", () => {
     Previous();
   });
+  
   addLikes(totalLikes);
   displayLightbox();
 }

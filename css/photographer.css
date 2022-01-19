@@ -156,6 +156,7 @@
 }
 
 .modal {
+  position: relative;
   border-radius: 5px;
   background-color: #db8876;
   height: 75%;
@@ -191,6 +192,14 @@ form {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+}
+
+#close-button {
+  border: none;
+  background-color: #db8876;
+  position: absolute;
+  top: 35px;
+  right: 35px;
 }
 
 form label {

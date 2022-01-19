@@ -65,6 +65,7 @@ export default function mediaFactory(data) {
         heart.innerHTML = '<i class="fas fa-heart"></i>';
         heart.setAttribute("class", "heart");
         heart.setAttribute("tabindex", 0);
+        heart.setAttribute("alt", 'likes');
         heart.setAttribute("aria-label", 'likes');
         mediaLegend.appendChild(heart);
         
