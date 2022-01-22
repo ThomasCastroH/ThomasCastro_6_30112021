@@ -102,18 +102,36 @@ async function displayMedia(media) {
   const date = document.getElementById("choice-date");
   const title = document.getElementById("choice-title");
 
-  const selectedChoice = () => {
-    if (selected.innerHTML != popularity.innerHTML) {
+
+  // Choix de tri caché dans la light box
+  const selectedChoiceHidden = () => {
+    if (selected.innerHTML === popularity.innerHTML) {
+      popularity.innerHTML = "Popularité" + '<div class="fas fa-chevron-up"></div>'
+    } else {
       popularity.innerHTML = "Popularité";
       popularity.classList.add("dropdown-menu-li");
       popularity.setAttribute("tabindex", "0");
     }
+    if (selected.innerHTML === date.innerHTML) {
+      date.innerHTML = "Date" + '<div class="fas fa-chevron-up"></div>'
+    } else {
+      date.innerHTML = "Date";
+      date.classList.add("dropdown-menu-li");
+      date.setAttribute("tabindex", "0");
+    }
+    if (selected.innerHTML === title.innerHTML) {
+      title.innerHTML = "Title" + '<div class="fas fa-chevron-up"></div>'
+    } else {
+      title.innerHTML = "Titre";
+      title.classList.add("dropdown-menu-li");
+      title.setAttribute("tabindex", "0");
+    }
   };
-  
+
   // Tri par nombre de like
   function sortByLike() {
     selected.innerHTML = "Popularité";
-    selectedChoice();
+    selectedChoiceHidden();
     mediaBoxes.sort((a, b) => b.likes - a.likes);
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -133,7 +151,7 @@ async function displayMedia(media) {
   // Tri par date
   function sortByDate() {
     selected.innerHTML = "Date";
-    selectedChoice();
+    selectedChoiceHidden();
     mediaBoxes.sort((a, b) => new Date(b.date) - new Date(a.date));
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -153,7 +171,7 @@ async function displayMedia(media) {
   // Tri par titre
   function sortByTitle() {
     selected.innerHTML = "Titre";
-    selectedChoice();
+    selectedChoiceHidden();
     function compare(a, b) {
       if (a.title < b.title) {
         return -1;
@@ -188,7 +206,6 @@ async function displayMedia(media) {
 
   // Tri par nombre de like par defaut
   sortByLike();
-  selectedChoice();
 
   // Compte le nombre de like du photographe
   let totalLikes = 0;
