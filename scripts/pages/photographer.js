@@ -104,7 +104,7 @@ async function displayMedia(media) {
 
 
   // Choix de tri caché dans la light box
-  const selectedChoiceHidden = () => {
+  const selectedChoiceArrow = () => {
     if (selected.innerHTML === popularity.innerHTML) {
       popularity.innerHTML = "Popularité" + '<div class="fas fa-chevron-up"></div>'
     } else {
@@ -131,7 +131,7 @@ async function displayMedia(media) {
   // Tri par nombre de like
   function sortByLike() {
     selected.innerHTML = "Popularité";
-    selectedChoiceHidden();
+    selectedChoiceArrow();
     mediaBoxes.sort((a, b) => b.likes - a.likes);
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -151,7 +151,7 @@ async function displayMedia(media) {
   // Tri par date
   function sortByDate() {
     selected.innerHTML = "Date";
-    selectedChoiceHidden();
+    selectedChoiceArrow();
     mediaBoxes.sort((a, b) => new Date(b.date) - new Date(a.date));
     mediaBoxes.forEach((mediaBoxe) => {
       const mediaCard = document.getElementById(mediaBoxe.id);
@@ -171,7 +171,7 @@ async function displayMedia(media) {
   // Tri par titre
   function sortByTitle() {
     selected.innerHTML = "Titre";
-    selectedChoiceHidden();
+    selectedChoiceArrow();
     function compare(a, b) {
       if (a.title < b.title) {
         return -1;
