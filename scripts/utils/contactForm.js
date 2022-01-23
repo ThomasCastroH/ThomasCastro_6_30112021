@@ -82,9 +82,7 @@ if (inputIn[3].value !== "") {
 function isFormValid(e) {
     e.preventDefault();
     if (isFirstnameValid() && isLastnameValid() && isEmailValid() && isMessageValid()) {
-      console.log();
-      console.log();
-      console.log();
+      console.log('Prenom: ' + inputIn[0].value, 'Nom: ' + inputIn[1].value, 'Mail: ' + inputIn[2].value, 'Message: ' + inputIn[3].value);
     } else {
       isFirstnameValid();
       isLastnameValid();
