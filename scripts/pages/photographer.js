@@ -73,7 +73,6 @@ async function displayMedia(media) {
   // Ouverture du dropdown
   const dropdownMenu = document.querySelector("#dropdown-ul");
   const dropdownLink = document.querySelector("#dropdown-menu");
-  const arrow = document.getElementById("dropdown-arrow");
 
   function toggleDropdown() {
     if (
@@ -82,12 +81,10 @@ async function displayMedia(media) {
     ) {
         dropdownMenu.style.display = "block";
         dropdownLink.setAttribute("aria-expanded", "true");
-        arrow.classList.add("arrow-up");
     } else {
         dropdownMenu.style.display = "none";
         dropdownLink.setAttribute("aria-expanded", "false");
         dropdownLink.focus();
-        arrow.classList.remove("arrow-up");
     }
   }
 
@@ -228,23 +225,25 @@ async function displayMedia(media) {
   
   // ouvrir la lightbox et faire apparaitre le media correspondant
   const lightBox = document.querySelector("#lightbox");
-  const lightBoxMediaContenair = document.querySelector("#lightbox-container");
+  const lightBoxMediaContainer = document.querySelector("#lightbox-container");
   const lightBoxTitle = document.querySelector("#lightbox-container-title");
   const prevArrow = document.getElementById("lightbox-prev");
   const nextArrow = document.getElementById("lightbox-next");
 
-  // Création des nouveaux éléments (titres, images, vidéo) à partir du tableau lors de la
-  // navigation fléchée
+  // Création des nouveaux éléments (titres, images, vidéo) à partir du tableau lors de la navigation fléchée
 
   // Element précédent
   const Previous = () => {
     let mediaLightBox = document.querySelector(".lightbox-container").firstChild;
+    // Trouve dans la liste le media correspondant à l'élément séléctionné
     const result = mediaBoxes.find((element) => element.id === parseInt(mediaLightBox.dataset.id, 10));
     let i = mediaBoxes.indexOf(result);
 
+    // Permet de passer du premier au dernier élément de la liste
     if (i === 0) {
       i = mediaBoxes.length;
     }
+
     const prevMedia = mediaBoxes[i - 1];
 
     if (prevMedia.image) {
@@ -255,8 +254,8 @@ async function displayMedia(media) {
       img.setAttribute("alt", prevMedia.title);
       img.dataset.id = mediaBoxes[i - 1].id;
 
-      lightBoxMediaContenair.innerHTML = "";
-      lightBoxMediaContenair.appendChild(img);
+      lightBoxMediaContainer.innerHTML = "";
+      lightBoxMediaContainer.appendChild(img);
       lightBoxTitle.textContent = prevMedia.title;
     }
     if (prevMedia.video) {
@@ -265,11 +264,11 @@ async function displayMedia(media) {
       const videoDisplay = document.createElement("video");
       videoDisplay.setAttribute("src", movie);
       videoDisplay.setAttribute("controls", "");
-      videoDisplay.setAttribute("aria-label",prevMedia.title);
+      videoDisplay.setAttribute("aria-label", prevMedia.title);
       videoDisplay.dataset.id = mediaBoxes[i - 1].id;
 
-      lightBoxMediaContenair.innerHTML = "";
-      lightBoxMediaContenair.appendChild(videoDisplay);
+      lightBoxMediaContainer.innerHTML = "";
+      lightBoxMediaContainer.appendChild(videoDisplay);
       lightBoxTitle.textContent = prevMedia.title;
     }
 
@@ -278,17 +277,16 @@ async function displayMedia(media) {
 
   // Element suivant
   const Next = () => {
-    let mediaLightBox = document.querySelector(
-      ".lightbox-container"
-    ).firstChild;
-
+    let mediaLightBox = document.querySelector(".lightbox-container").firstChild;
+     // Trouve dans la liste le media correspondant à l'élément séléctionné
     const result = mediaBoxes.find((element) => element.id === parseInt(mediaLightBox.dataset.id, 10));
-
     let i = mediaBoxes.indexOf(result);
 
+    // Përmet d epasser du dernier au premier élément de la liste
     if (i === mediaBoxes.length - 1) {
       i = -1;
     }
+
     const nextMedia = mediaBoxes[i + 1];
 
     if (nextMedia.image) {
@@ -299,8 +297,8 @@ async function displayMedia(media) {
       img.setAttribute("alt", nextMedia.title);
       img.dataset.id = mediaBoxes[i + 1].id;
 
-      lightBoxMediaContenair.innerHTML = "";
-      lightBoxMediaContenair.appendChild(img);
+      lightBoxMediaContainer.innerHTML = "";
+      lightBoxMediaContainer.appendChild(img);
       lightBoxTitle.textContent = nextMedia.title;
     }
     if (nextMedia.video) {
@@ -312,13 +310,14 @@ async function displayMedia(media) {
       videoDisplay.setAttribute("aria-label", nextMedia.title);
       videoDisplay.dataset.id = mediaBoxes[i + 1].id;
 
-      lightBoxMediaContenair.innerHTML = "";
-      lightBoxMediaContenair.appendChild(videoDisplay);
+      lightBoxMediaContainer.innerHTML = "";
+      lightBoxMediaContainer.appendChild(videoDisplay);
       lightBoxTitle.textContent = nextMedia.title;
     }
 
     mediaLightBox = document.querySelector(".lightbox-container").firstChild;
   };
+  
   // Evenements de la lightbox
   lightBox.addEventListener("keydown", (e) => {
     if (e.key === "ArrowRight") {
