@@ -340,6 +340,32 @@ async function displayMedia(media) {
   
   addLikes(totalLikes);
   displayLightbox();
+
+
+  var focusableEls = document.querySelectorAll(".form-part");
+  var firstFocusableEl = focusableEls[0];  
+  var lastFocusableEl = focusableEls[focusableEls.length - 1];
+  var KEYCODE_TAB = 9;
+
+  document.addEventListener('keydown', function(e) {
+    var isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+
+    if (!isTabPressed) { 
+      return; 
+    }
+
+    if ( e.shiftKey ) /* shift + tab */ {
+      if (document.activeElement === firstFocusableEl) {
+        lastFocusableEl.focus();
+          e.preventDefault();
+        }
+      } else /* tab */ {
+      if (document.activeElement === lastFocusableEl) {
+        firstFocusableEl.focus();
+          e.preventDefault();
+        }
+      }
+  });
 }
 
 async function init() {

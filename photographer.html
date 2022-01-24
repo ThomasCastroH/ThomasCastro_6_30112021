@@ -80,7 +80,7 @@
       <article class="photograph-media"></article>
     </main>
 
-    <div id="contact_modal" aria-label="Contact me" aria-labelledby="2">
+    <div id="contact_modal" role="dialog" aria-label="Contact me" aria-labelledby="2">
       <div class="modal">
         <header>
           <h2 tabindex="0" id="contact-me">Contactez-moi</h2>
@@ -92,14 +92,14 @@
           <div>
             <div
               class="formData"
-              data-error="Veuillez entrer 2 lettres ou plus pour le champ du prénom"
+              data-error="Veuillez entrer 3 lettres ou plus pour le champ du prénom"
               data-error-visible="false"
             >
               <label for="first">Prénom</label>
               <input
                 aria-label="First name"
                 aria-labelledby="3"
-                class="text-control"
+                class="text-control form-part"
                 type="text"
                 id="first"
                 name="first"
@@ -115,7 +115,7 @@
               <input
                 aria-label="Last name"
                 aria-labelledby="5"
-                class="text-control"
+                class="text-control form-part"
                 type="text"
                 id="last"
                 name="last"
@@ -131,7 +131,7 @@
               <input
                 aria-label="Email"
                 aria-labelledby="7"
-                class="text-control"
+                class="text-control form-part"
                 type="email"
                 id="email"
                 name="email"
@@ -146,14 +146,14 @@
               <input
                 aria-label="Your message"
                 aria-labelledby="9" 
-                class="text-control"
+                class="text-control form-part"
                 type="text"
                 id="message"
                 name="message"
               />
             </div>
           </div>
-          <button class="contact_button" aria-label="Send">Envoyer</button>
+          <button class="contact_button form-part" aria-label="Send">Envoyer</button>
         </form>
       </div>
     </div>

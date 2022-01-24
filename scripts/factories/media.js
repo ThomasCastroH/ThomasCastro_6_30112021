@@ -57,6 +57,7 @@ export default function mediaFactory(data) {
         const likesMedia = document.createElement("p");
         likesMedia.textContent = likes;
         likesMedia.setAttribute("tabindex", 0);
+        likesMedia.setAttribute("alt", "nombre de like")
         likesMedia.setAttribute("class", "likes");
         mediaLegend.appendChild(likesMedia);
 
@@ -65,7 +66,7 @@ export default function mediaFactory(data) {
         heart.innerHTML = '<i class="fas fa-heart"></i>';
         heart.setAttribute("class", "heart");
         heart.setAttribute("tabindex", 0);
-        heart.setAttribute("alt", 'likes');
+        heart.setAttribute("alt", 'likes button');
         heart.setAttribute("aria-label", 'likes');
         mediaLegend.appendChild(heart);
         

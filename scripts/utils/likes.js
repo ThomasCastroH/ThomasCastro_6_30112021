@@ -22,6 +22,7 @@ export default function addLikes(totalLikes) {
         elementLikes.style.color = "#901c1c";
         }
     };
+    
     // Evenement d'ajout de like
     hearts.forEach((element) => {
         element.addEventListener("click", () => {
